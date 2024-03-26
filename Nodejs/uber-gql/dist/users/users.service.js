@@ -12,27 +12,33 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TripsService = void 0;
+exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const trip_entity_1 = require("./trip.entity");
-let TripsService = class TripsService {
-    constructor(tripRepository) {
-        this.tripRepository = tripRepository;
+const users_entity_1 = require("./users.entity");
+let UsersService = class UsersService {
+    constructor(userRepo) {
+        this.userRepo = userRepo;
+    }
+    async findAll() {
+        return this.userRepo.find();
     }
     async findById(id) {
-        return this.tripRepository.findOne({ where: { TripId: id } });
+        return this.userRepo.findOne({ where: { UserId: id } });
     }
-    async createTrip(trip) {
-        const newTrip = this.tripRepository.create(trip);
-        return this.tripRepository.save(newTrip);
+    async findByUserName(username) {
+        return this.userRepo.findOne({ where: { UserName: username } });
+    }
+    async createUser(user) {
+        const newUser = this.userRepo.create(user);
+        return this.userRepo.save(newUser);
     }
 };
-exports.TripsService = TripsService;
-exports.TripsService = TripsService = __decorate([
+exports.UsersService = UsersService;
+exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(trip_entity_1.Trips)),
+    __param(0, (0, typeorm_1.InjectRepository)(users_entity_1.Users)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], TripsService);
-//# sourceMappingURL=trips.service.js.map
+], UsersService);
+//# sourceMappingURL=users.service.js.map

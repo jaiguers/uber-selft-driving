@@ -32,7 +32,7 @@ let TripsResolver = class TripsResolver {
 exports.TripsResolver = TripsResolver;
 __decorate([
     (0, graphql_2.Query)((returns) => trip_entity_1.Trips, { nullable: true }),
-    __param(0, (0, graphql_1.Args)('id')),
+    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)

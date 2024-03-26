@@ -8,6 +8,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { TripsModule } from './trips/trips.module';
+import { UsersModule } from './users/users.module';
+import { PersonModule } from './person/person.module';
+import { VehiclesModule } from './vehicles/vehicles.module';
 
 
 @Module({
@@ -25,7 +28,10 @@ import { TripsModule } from './trips/trips.module';
       autoLoadEntities: true,
     }),
     AuthModule,
-    TripsModule
+    TripsModule,
+    UsersModule,
+    PersonModule,
+    VehiclesModule
   ],
   controllers: [AppController],
   providers: [AppService],
