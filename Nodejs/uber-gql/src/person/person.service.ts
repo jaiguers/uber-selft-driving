@@ -4,11 +4,16 @@ import { UpdatePersonInput } from './dto/update-person.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from './entities/person.entity';
 import { Repository } from 'typeorm';
+import { UsersService } from 'src/users/users.service';
+import { Users } from 'src/users/users.entity';
 
 @Injectable()
 export class PersonService {
 
-  constructor(@InjectRepository(Person) private personRepo: Repository<Person>) { }
+  constructor(@InjectRepository(Person)
+  private personRepo: Repository<Person>,
+    private userService: UsersService,
+  ) { }
 
   create(createPersonInput: CreatePersonInput): Promise<Person> {
     const newPerson = this.personRepo.create(createPersonInput);
@@ -21,6 +26,10 @@ export class PersonService {
 
   findOne(id: number): Promise<Person> {
     return this.personRepo.findOne({ where: { PersonId: id } });
+  }
+
+  findUser(id: string): Promise<Users> {
+    return this.userService.findById(id);
   }
 
   update(id: number, updatePersonInput: UpdatePersonInput) {

@@ -11,6 +11,8 @@ import { TripsModule } from './trips/trips.module';
 import { UsersModule } from './users/users.module';
 import { PersonModule } from './person/person.module';
 import { VehiclesModule } from './vehicles/vehicles.module';
+import { UserTripModule } from './user-trip/user-trip.module';
+import { UserBookingTripModule } from './user-booking-trip/user-booking-trip.module';
 
 
 @Module({
@@ -31,7 +33,9 @@ import { VehiclesModule } from './vehicles/vehicles.module';
     TripsModule,
     UsersModule,
     PersonModule,
-    VehiclesModule
+    VehiclesModule,
+    UserTripModule,
+    UserBookingTripModule
   ],
   controllers: [AppController],
   providers: [AppService],

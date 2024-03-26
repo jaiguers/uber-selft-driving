@@ -15,11 +15,11 @@ export class Person {
   PersonName: string
 
   @Column()
-  @Field()
+  @Field({ nullable: true })
   PersonPhone: string
 
   @Column()
-  @Field()
+  @Field({ nullable: true })
   PersonAddress: string
 
   @Column()

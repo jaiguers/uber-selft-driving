@@ -27,10 +27,10 @@ export class Users {
     UserType: string
 
     @OneToOne(() => Person, person => person.User)
-    @Field(() => Person)
+    @Field(() => Person, { nullable: true })
     Person: Person
 
     @OneToOne(() => Vehicle, vehicle => vehicle.User)
-    @Field(() => Vehicle)
+    @Field(() => Vehicle, { nullable: true })
     Vehicle: Vehicle
 }

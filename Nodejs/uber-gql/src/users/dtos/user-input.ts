@@ -21,10 +21,4 @@ export class UserInput {
 
     @Field()
     UserStatus: string
-
-    @Field()
-    newPerson: CreatePersonInput
-
-    @Field()
-    newVehicle: CreateVehicleInput
 }

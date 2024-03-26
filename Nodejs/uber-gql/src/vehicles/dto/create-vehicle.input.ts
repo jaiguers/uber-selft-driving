@@ -14,10 +14,10 @@ export class CreateVehicleInput {
 
   @Field(() => Int)
   VehicleDoors: number
-  
+
   @Field()
-  VehicleLicenseNumber:string
-  
-  @Field()
+  VehicleLicenseNumber: string
+
+  @Field({ nullable: true })
   UserId: string
 }

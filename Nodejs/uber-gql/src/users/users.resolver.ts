@@ -1,20 +1,14 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Parent, ResolveField, Resolver } from '@nestjs/graphql';
 import { Query } from '@nestjs/graphql';
 
 import { UsersService } from './users.service';
 import { Users } from './users.entity';
 import { UserInput } from './dtos/user-input';
-import { PersonService } from 'src/person/person.service';
-import { VehiclesService } from 'src/vehicles/vehicles.service';
 
-@Resolver()
+@Resolver(() => Users)
 export class UsersResolver {
 
-    constructor(
-        private service: UsersService,
-        private personService: PersonService,
-        private vehicleService: VehiclesService
-    ) { }
+    constructor(private service: UsersService) { }
 
     @Query((returns) => [Users], { nullable: true })
     findAll() {
@@ -33,18 +27,6 @@ export class UsersResolver {
 
     @Mutation((returns) => Users)
     async createUser(@Args('newUser') newUser: UserInput) {
-        const insertUser = await this.service.createUser(newUser);
-
-        if (newUser.UserType == UserTypes.Person) {
-            newUser.newPerson.UserId = insertUser.UserId;
-            newUser.newPerson.PersonStatus = 'Active';
-            this.personService.create(newUser.newPerson);
-        }
-        else if (newUser.UserType == UserTypes.Vehicle) {
-            newUser.newVehicle.UserId = insertUser.UserId;
-            this.vehicleService.create(newUser.newVehicle);
-        }
-
-        return insertUser;
+        return this.service.createUser(newUser);
     }
 }

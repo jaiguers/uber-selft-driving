@@ -4,6 +4,7 @@ import { CreateTripInput } from './dtos/create-trip-input';
 export declare class TripsService {
     private tripRepository;
     constructor(tripRepository: Repository<Trips>);
+    findAll(): Promise<Trips[]>;
     findById(id: number): Promise<Trips>;
     createTrip(trip: CreateTripInput): Promise<Trips>;
 }

@@ -17,12 +17,51 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Person {
+  """LLave primaria"""
+  PersonId: Int!
+  PersonName: String!
+  PersonPhone: String
+  PersonAddress: String
+  PersonStatus: String!
+
+  """Relación con Users"""
+  UserId: String!
+  User: Users
+  user: Users!
+}
+
+type Vehicle {
+  """Llave primaria de vehiculos"""
+  VehicleId: Int!
+  Description: String!
+  VehiclePlate: String!
+  VehicleColor: String!
+  VehicleDoors: Int!
+  VehicleLicenseNumber: String!
+  UserId: String!
+  User: Users
+  user: Users!
+}
+
 type Users {
   UserId: String!
   UserName: String!
   UserPassword: String!
   UserStatus: String!
   UserType: String!
+  Person: Person
+  Vehicle: Vehicle
+}
+
+type UserTrip {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type UserBookingTrip {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type Query {
@@ -30,11 +69,29 @@ type Query {
   findAll: [Users!]
   findByUserId(id: String!): Users
   findByUserName(username: String!): Users
+  findAllPerson: [Person!]!
+  person(id: Int!): Person!
+  vehicles: [Vehicle!]!
+  vehicle(id: Int!): Vehicle!
+  userTrip(id: Int!): UserTrip!
+  userBookingTrip(id: Int!): UserBookingTrip!
 }
 
 type Mutation {
   createTrip(newTrip: CreateTripInput!): Trips!
   createUser(newUser: UserInput!): Users!
+  createPerson(createPersonInput: CreatePersonInput!): Person!
+  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
+  removePerson(id: Int!): Person!
+  createVehicle(createVehicleInput: CreateVehicleInput!): Vehicle!
+  updateVehicle(updateVehicleInput: UpdateVehicleInput!): Vehicle!
+  removeVehicle(id: Int!): Vehicle!
+  createUserTrip(createUserTripInput: CreateUserTripInput!): UserTrip!
+  updateUserTrip(updateUserTripInput: UpdateUserTripInput!): UserTrip!
+  removeUserTrip(id: Int!): UserTrip!
+  createUserBookingTrip(createUserBookingTripInput: CreateUserBookingTripInput!): UserBookingTrip!
+  updateUserBookingTrip(updateUserBookingTripInput: UpdateUserBookingTripInput!): UserBookingTrip!
+  removeUserBookingTrip(id: Int!): UserBookingTrip!
 }
 
 input CreateTripInput {
@@ -51,4 +108,64 @@ input UserInput {
   UserPassword: String!
   UserType: String!
   UserStatus: String!
+}
+
+input CreatePersonInput {
+  """Nombre de la persona"""
+  PersonName: String!
+  PersonPhone: String
+  PersonAddress: String
+  PersonStatus: String
+  UserId: String
+}
+
+input UpdatePersonInput {
+  """Nombre de la persona"""
+  PersonName: String
+  PersonPhone: String
+  PersonAddress: String
+  PersonStatus: String
+  UserId: String
+  id: Int!
+}
+
+input CreateVehicleInput {
+  Description: String!
+  VehiclePlate: String!
+  VehicleColor: String!
+  VehicleDoors: Int!
+  VehicleLicenseNumber: String!
+  UserId: String
+}
+
+input UpdateVehicleInput {
+  Description: String
+  VehiclePlate: String
+  VehicleColor: String
+  VehicleDoors: Int
+  VehicleLicenseNumber: String
+  UserId: String
+  id: Int!
+}
+
+input CreateUserTripInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserTripInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateUserBookingTripInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserBookingTripInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

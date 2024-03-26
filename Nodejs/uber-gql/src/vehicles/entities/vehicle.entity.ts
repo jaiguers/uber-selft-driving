@@ -33,9 +33,6 @@ export class Vehicle {
   @Field()
   UserId: string
 
-  @Field(() => Int,)
-  exampleField: number;
-
   @OneToOne(() => Users, (users) => users.Person)
   @Field(() => Users, { nullable: true })
   User: Users

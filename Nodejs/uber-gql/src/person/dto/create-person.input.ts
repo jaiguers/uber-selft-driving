@@ -10,18 +10,19 @@ export class CreatePersonInput {
   PersonName: string
 
   @IsOptional()
-  @Field()
+  @Field({ nullable: true })
   PersonPhone: string
 
   @IsOptional()
-  @Field()
+  @Field({ nullable: true })
   PersonAddress: string
 
   @IsOptional()
-  @Field()
+  @Field({ nullable: true })
   PersonStatus: string
 
   @IsOptional()
   @Field({ nullable: true })
   UserId: string
+
 }

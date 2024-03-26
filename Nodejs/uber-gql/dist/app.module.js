@@ -17,6 +17,10 @@ const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
 const trips_module_1 = require("./trips/trips.module");
 const users_module_1 = require("./users/users.module");
+const person_module_1 = require("./person/person.module");
+const vehicles_module_1 = require("./vehicles/vehicles.module");
+const user_trip_module_1 = require("./user-trip/user-trip.module");
+const user_booking_trip_module_1 = require("./user-booking-trip/user-booking-trip.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -36,7 +40,11 @@ exports.AppModule = AppModule = __decorate([
             }),
             auth_module_1.AuthModule,
             trips_module_1.TripsModule,
-            users_module_1.UsersModule
+            users_module_1.UsersModule,
+            person_module_1.PersonModule,
+            vehicles_module_1.VehiclesModule,
+            user_trip_module_1.UserTripModule,
+            user_booking_trip_module_1.UserBookingTripModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

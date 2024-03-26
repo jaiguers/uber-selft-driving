@@ -30,6 +30,5 @@ export class UsersService {
 
         const newUser = this.userRepo.create(user);
         return this.userRepo.save(newUser);
-
     }
 }

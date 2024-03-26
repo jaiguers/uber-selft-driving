@@ -27,6 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], UserInput.prototype, "UserPassword", void 0);
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: "UserType es requerido" }),
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], UserInput.prototype, "UserType", void 0);

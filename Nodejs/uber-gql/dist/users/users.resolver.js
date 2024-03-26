@@ -31,7 +31,7 @@ let UsersResolver = class UsersResolver {
     findByUserName(userName) {
         return this.service.findByUserName(userName);
     }
-    createUser(newUser) {
+    async createUser(newUser) {
         return this.service.createUser(newUser);
     }
 };
@@ -61,10 +61,10 @@ __decorate([
     __param(0, (0, graphql_1.Args)('newUser')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_input_1.UserInput]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "createUser", null);
 exports.UsersResolver = UsersResolver = __decorate([
-    (0, graphql_1.Resolver)(),
+    (0, graphql_1.Resolver)(() => users_entity_1.Users),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersResolver);
 //# sourceMappingURL=users.resolver.js.map

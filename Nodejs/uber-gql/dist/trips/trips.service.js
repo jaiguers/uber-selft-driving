@@ -21,6 +21,9 @@ let TripsService = class TripsService {
     constructor(tripRepository) {
         this.tripRepository = tripRepository;
     }
+    findAll() {
+        return this.tripRepository.find();
+    }
     async findById(id) {
         return this.tripRepository.findOne({ where: { TripId: id } });
     }
