@@ -2,6 +2,25 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateUserTripInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+
+  @Field()
+  UserTripDateAcept: Date
+
+  @Field({ nullable: true })
+  UserTripDateEnd: Date
+
+  @Field(() => Int)
+  VehicleId: number
+
+  @Field()
+  UserTripEarnings: number
+
+  @Field({ nullable: true })
+  UserTripWaitingTime: string
+
+  @Field()
+  UserTripStatus: boolean
+
+  @Field(() => Int)
+  TripId: number
 }

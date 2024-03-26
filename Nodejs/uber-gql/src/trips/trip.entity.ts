@@ -1,7 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql'
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { UserBookingTrip } from 'src/user-booking-trip/entities/user-booking-trip.entity'
+import { UserTrip } from 'src/user-trip/entities/user-trip.entity'
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm'
 
-@Entity('Trips') 
+@Entity('Trips')
 @ObjectType()
 export class Trips {
     @PrimaryGeneratedColumn('identity')
@@ -31,4 +33,12 @@ export class Trips {
     @Column()
     @Field((type) => Int)
     TripValue: number
+
+    @OneToMany(() => UserTrip, (userTrip) => userTrip.Trips)
+    @Field(() => UserTrip)
+    UserTrip: UserTrip
+
+    @OneToMany(() => UserBookingTrip, (userBookingTrip) => userBookingTrip.Trip)
+    @Field(() => UserBookingTrip)
+    UserBookingTrip: UserBookingTrip
 }

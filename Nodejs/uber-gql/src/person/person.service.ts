@@ -11,7 +11,7 @@ import { Users } from 'src/users/users.entity';
 export class PersonService {
 
   constructor(@InjectRepository(Person)
-  private personRepo: Repository<Person>,
+    private personRepo: Repository<Person>,
     private userService: UsersService,
   ) { }
 

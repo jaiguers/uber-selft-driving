@@ -10,6 +10,11 @@ export class TripsResolver {
 
     constructor(private service: TripsService) { }
 
+    @Query((returns) => Trips)
+    findAllTrips(): Promise<Trips[]> {
+        return this.service.findAll();
+    }
+
     @Query((returns) => Trips, { nullable: true })
     findById(@Args('id', { type: () => Int }) id: number) {
         return this.service.findById(id);
