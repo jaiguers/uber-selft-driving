@@ -15,10 +15,10 @@
 
 ## Description 
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Repositorio de API GraphQL con [NestJS](https://github.com/nestjs/nest) y PostgreSQL.
 
 # uber-selft-driving
-Uber clone with electric cars and without humans behind the wheel. Test for byte4bit
+Uber clone que hace CRUDs usando GraphQL, TypeORM, PostgreSQL y simulando carros autonomos como conductores. Test para byte4bit
 
 ## Installation
 
