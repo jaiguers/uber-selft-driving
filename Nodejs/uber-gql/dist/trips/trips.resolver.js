@@ -84,7 +84,7 @@ __decorate([
     __param(0, (0, graphql_1.Args)('updateTripInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [update_trip_input_1.UpdateTripInput]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TripsResolver.prototype, "updateTrips", null);
 exports.TripsResolver = TripsResolver = __decorate([
     (0, graphql_1.Resolver)(() => trip_entity_1.Trips),
