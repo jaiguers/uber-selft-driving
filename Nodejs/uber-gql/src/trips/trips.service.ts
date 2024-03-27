@@ -50,8 +50,11 @@ export class TripsService {
         return trips;
     }
 
-    update(id: number, updateTripInput: UpdateTripInput) {
+    async update(id: number, updateTripInput: UpdateTripInput): Promise<Trips> {
+        if (updateTripInput.TripStatus == Status.Assigned)
+            this.userTripService.create(updateTripInput.UserTrip)
 
-        return this.tripRepository.update(id, { TripStatus: updateTripInput.TripStatus });
+        this.tripRepository.update(id, { TripStatus: updateTripInput.TripStatus });
+        return this.findById(id);
     }
 }

@@ -12,7 +12,7 @@ export class CreateUserTripInput {
   @Field(() => Int)
   VehicleId: number
 
-  @Field()
+  @Field({ nullable: true })
   UserTripEarnings: number
 
   @Field({ nullable: true })

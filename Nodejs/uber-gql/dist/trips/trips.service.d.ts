@@ -16,5 +16,5 @@ export declare class TripsService {
     findUserTrip(tripId: number): Promise<UserTrip>;
     findUserBookingTrip(tripId: number): Promise<UserBookingTrip>;
     createTrip(tripInput: CreateTripInput): Promise<Trips>;
-    update(id: number, updateTripInput: UpdateTripInput): Promise<import("typeorm").UpdateResult>;
+    update(id: number, updateTripInput: UpdateTripInput): Promise<Trips>;
 }

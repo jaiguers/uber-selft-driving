@@ -6,6 +6,7 @@ import { Trips } from './trip.entity';
 import { CreateTripInput } from './dtos/create-trip-input';
 import { UserTrip } from 'src/user-trip/entities/user-trip.entity';
 import { UserBookingTrip } from 'src/user-booking-trip/entities/user-booking-trip.entity';
+import { UpdateTripInput } from './dtos/update-trip-input';
 
 @Resolver(()=> Trips)
 export class TripsResolver {
@@ -38,5 +39,10 @@ export class TripsResolver {
     @Mutation((returns) => Trips)
     createTrip(@Args('newTrip') newTrip: CreateTripInput) {
         return this.service.createTrip(newTrip)
+    }
+
+    @Mutation(() => Trips)
+    updateTrips(@Args('updateTripInput') updateTripInput: UpdateTripInput):Promise<Trips> {
+      return this.service.update(updateTripInput.TripId, updateTripInput);
     }
 }

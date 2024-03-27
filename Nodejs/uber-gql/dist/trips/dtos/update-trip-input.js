@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateTripInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const create_user_trip_input_1 = require("../../user-trip/dto/create-user-trip.input");
 let UpdateTripInput = class UpdateTripInput {
 };
 exports.UpdateTripInput = UpdateTripInput;
@@ -19,21 +20,9 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdateTripInput.prototype, "TripId", void 0);
 __decorate([
-    (0, graphql_1.Field)({ nullable: true }),
-    __metadata("design:type", String)
-], UpdateTripInput.prototype, "TripDescription", void 0);
-__decorate([
-    (0, graphql_1.Field)({ nullable: true }),
-    __metadata("design:type", Date)
-], UpdateTripInput.prototype, "TripDate", void 0);
-__decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], UpdateTripInput.prototype, "TripStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)({ nullable: true }),
-    __metadata("design:type", String)
-], UpdateTripInput.prototype, "TripOrigin", void 0);
 __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
@@ -42,6 +31,10 @@ __decorate([
     (0, graphql_1.Field)((type) => graphql_1.Int, { nullable: true }),
     __metadata("design:type", Number)
 ], UpdateTripInput.prototype, "TripValue", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", create_user_trip_input_1.CreateUserTripInput)
+], UpdateTripInput.prototype, "UserTrip", void 0);
 exports.UpdateTripInput = UpdateTripInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateTripInput);

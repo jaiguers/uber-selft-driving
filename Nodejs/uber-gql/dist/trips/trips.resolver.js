@@ -20,6 +20,7 @@ const trip_entity_1 = require("./trip.entity");
 const create_trip_input_1 = require("./dtos/create-trip-input");
 const user_trip_entity_1 = require("../user-trip/entities/user-trip.entity");
 const user_booking_trip_entity_1 = require("../user-booking-trip/entities/user-booking-trip.entity");
+const update_trip_input_1 = require("./dtos/update-trip-input");
 let TripsResolver = class TripsResolver {
     constructor(service) {
         this.service = service;
@@ -38,6 +39,9 @@ let TripsResolver = class TripsResolver {
     }
     createTrip(newTrip) {
         return this.service.createTrip(newTrip);
+    }
+    updateTrips(updateTripInput) {
+        return this.service.update(updateTripInput.TripId, updateTripInput);
     }
 };
 exports.TripsResolver = TripsResolver;
@@ -75,6 +79,13 @@ __decorate([
     __metadata("design:paramtypes", [create_trip_input_1.CreateTripInput]),
     __metadata("design:returntype", void 0)
 ], TripsResolver.prototype, "createTrip", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => trip_entity_1.Trips),
+    __param(0, (0, graphql_1.Args)('updateTripInput')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_trip_input_1.UpdateTripInput]),
+    __metadata("design:returntype", void 0)
+], TripsResolver.prototype, "updateTrips", null);
 exports.TripsResolver = TripsResolver = __decorate([
     (0, graphql_1.Resolver)(() => trip_entity_1.Trips),
     __metadata("design:paramtypes", [trips_service_1.TripsService])

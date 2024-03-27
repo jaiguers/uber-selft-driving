@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateUserTripInput.prototype, "VehicleId", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", Number)
 ], CreateUserTripInput.prototype, "UserTripEarnings", void 0);
 __decorate([

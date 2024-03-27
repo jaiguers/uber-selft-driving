@@ -102,6 +102,7 @@ type Query {
 
 type Mutation {
   createTrip(newTrip: CreateTripInput!): Trips!
+  updateTrips(updateTripInput: UpdateTripInput!): Trips!
   createUserTrip(createUserTripInput: CreateUserTripInput!): UserTrip!
   updateUserTrip(updateUserTripInput: UpdateUserTripInput!): UserTrip!
   removeUserTrip(id: Int!): UserTrip!
@@ -134,11 +135,19 @@ input CreateUserBookingTripInput {
   UserTenentId: String!
 }
 
+input UpdateTripInput {
+  TripId: Int!
+  TripStatus: String!
+  TripDestination: String
+  TripValue: Int
+  UserTrip: CreateUserTripInput
+}
+
 input CreateUserTripInput {
   UserTripDateAcept: DateTime!
   UserTripDateEnd: DateTime
   VehicleId: Int!
-  UserTripEarnings: Float!
+  UserTripEarnings: Float
   UserTripWaitingTime: String
   UserTripStatus: Boolean!
   TripId: Int!

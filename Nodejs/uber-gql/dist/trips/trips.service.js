@@ -47,8 +47,11 @@ let TripsService = class TripsService {
         this.usBookingTripService.create(tripInput.UserBookingTripInput);
         return trips;
     }
-    update(id, updateTripInput) {
-        return this.tripRepository.update(id, { TripStatus: updateTripInput.TripStatus });
+    async update(id, updateTripInput) {
+        if (updateTripInput.TripStatus == Status_1.Status.Assigned)
+            this.userTripService.create(updateTripInput.UserTrip);
+        this.tripRepository.update(id, { TripStatus: updateTripInput.TripStatus });
+        return this.findById(id);
     }
 };
 exports.TripsService = TripsService;

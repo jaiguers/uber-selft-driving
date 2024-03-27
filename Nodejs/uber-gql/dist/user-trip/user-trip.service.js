@@ -23,6 +23,7 @@ let UserTripService = class UserTripService {
     }
     create(createUserTripInput) {
         createUserTripInput.UserTripDateAcept = new Date();
+        createUserTripInput.UserTripStatus = true;
         const newUserT = this.userTripRepo.create(createUserTripInput);
         return this.userTripRepo.save(newUserT);
     }
