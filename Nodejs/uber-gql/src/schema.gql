@@ -87,7 +87,7 @@ type Trips {
 }
 
 type Query {
-  findAllTrips: Trips!
+  findAllTrips: [Trips!]!
   findById(id: Int!): Trips
   userTrip(id: Int!): UserTrip!
   userBookingTrip(id: Int!): UserBookingTrip!

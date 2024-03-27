@@ -39,7 +39,7 @@ let TripsService = class TripsService {
         return this.usBookingTripService.findByTrip(tripId);
     }
     async createTrip(tripInput) {
-        tripInput.TripStatus = Status_1.Status.Waiting;
+        tripInput.TripStatus = Status_1.Status.Searching;
         tripInput.TripDate = new Date();
         const newTrip = this.tripRepository.create(tripInput);
         const trips = await this.tripRepository.save(newTrip);

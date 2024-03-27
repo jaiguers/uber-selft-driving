@@ -46,7 +46,7 @@ let TripsResolver = class TripsResolver {
 };
 exports.TripsResolver = TripsResolver;
 __decorate([
-    (0, graphql_2.Query)((returns) => trip_entity_1.Trips),
+    (0, graphql_2.Query)((returns) => [trip_entity_1.Trips]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

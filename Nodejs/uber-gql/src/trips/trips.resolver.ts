@@ -16,7 +16,7 @@ export class TripsResolver {
 
     ) { }
 
-    @Query((returns) => Trips)
+    @Query((returns) => [Trips])
     findAllTrips(): Promise<Trips[]> {
         return this.service.findAll();
     }

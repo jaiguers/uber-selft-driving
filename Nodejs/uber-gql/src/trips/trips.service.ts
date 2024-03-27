@@ -39,7 +39,7 @@ export class TripsService {
     }
 
     async createTrip(tripInput: CreateTripInput): Promise<Trips> {
-        tripInput.TripStatus = Status.Waiting;
+        tripInput.TripStatus = Status.Searching;
         tripInput.TripDate = new Date();
         const newTrip = this.tripRepository.create(tripInput)
         const trips = await this.tripRepository.save(newTrip);
