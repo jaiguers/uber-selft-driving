@@ -1,3 +1,4 @@
+import { UserTrip } from 'src/user-trip/entities/user-trip.entity';
 import { Users } from 'src/users/users.entity';
 export declare class Vehicle {
     VehicleId: number;
@@ -8,4 +9,5 @@ export declare class Vehicle {
     VehicleLicenseNumber: string;
     UserId: string;
     User: Users;
+    UserTrip: UserTrip;
 }

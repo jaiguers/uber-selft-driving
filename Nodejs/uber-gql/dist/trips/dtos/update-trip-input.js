@@ -9,40 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserTripInput = void 0;
+exports.UpdateTripInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
-let CreateUserTripInput = class CreateUserTripInput {
+let UpdateTripInput = class UpdateTripInput {
 };
-exports.CreateUserTripInput = CreateUserTripInput;
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", Date)
-], CreateUserTripInput.prototype, "UserTripDateAcept", void 0);
-__decorate([
-    (0, graphql_1.Field)({ nullable: true }),
-    __metadata("design:type", Date)
-], CreateUserTripInput.prototype, "UserTripDateEnd", void 0);
+exports.UpdateTripInput = UpdateTripInput;
 __decorate([
     (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
-], CreateUserTripInput.prototype, "VehicleId", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", Number)
-], CreateUserTripInput.prototype, "UserTripEarnings", void 0);
+], UpdateTripInput.prototype, "TripId", void 0);
 __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
-], CreateUserTripInput.prototype, "UserTripWaitingTime", void 0);
+], UpdateTripInput.prototype, "TripDescription", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Date)
+], UpdateTripInput.prototype, "TripDate", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    __metadata("design:type", Boolean)
-], CreateUserTripInput.prototype, "UserTripStatus", void 0);
+    __metadata("design:type", String)
+], UpdateTripInput.prototype, "TripStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateTripInput.prototype, "TripOrigin", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UpdateTripInput.prototype, "TripDestination", void 0);
+__decorate([
+    (0, graphql_1.Field)((type) => graphql_1.Int, { nullable: true }),
     __metadata("design:type", Number)
-], CreateUserTripInput.prototype, "TripId", void 0);
-exports.CreateUserTripInput = CreateUserTripInput = __decorate([
+], UpdateTripInput.prototype, "TripValue", void 0);
+exports.UpdateTripInput = UpdateTripInput = __decorate([
     (0, graphql_1.InputType)()
-], CreateUserTripInput);
-//# sourceMappingURL=create-user-trip.input.js.map
+], UpdateTripInput);
+//# sourceMappingURL=update-trip-input.js.map

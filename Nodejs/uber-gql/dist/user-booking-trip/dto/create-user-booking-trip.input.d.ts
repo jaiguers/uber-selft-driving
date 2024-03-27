@@ -1,3 +1,6 @@
 export declare class CreateUserBookingTripInput {
-    exampleField: number;
+    UserBookingTripDateInit: Date;
+    UserBookingTripDateEnd: Date;
+    TripId: number;
+    UserTenentId: string;
 }

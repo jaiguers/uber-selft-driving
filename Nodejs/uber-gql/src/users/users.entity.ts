@@ -2,7 +2,7 @@ import { ObjectType, Field } from '@nestjs/graphql'
 import { Person } from 'src/person/entities/person.entity'
 import { UserBookingTrip } from 'src/user-booking-trip/entities/user-booking-trip.entity'
 import { Vehicle } from 'src/vehicles/entities/vehicle.entity'
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm'
 
 @Entity('Users')
 @ObjectType()
@@ -28,6 +28,7 @@ export class Users {
     UserType: string
 
     @OneToOne(() => Person, person => person.User)
+    @JoinColumn()
     @Field(() => Person, { nullable: true })
     Person: Person
 

@@ -11,14 +11,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserTrip = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const trip_entity_1 = require("../../trips/trip.entity");
+const vehicle_entity_1 = require("../../vehicles/entities/vehicle.entity");
+const typeorm_1 = require("typeorm");
 let UserTrip = class UserTrip {
 };
 exports.UserTrip = UserTrip;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Example field (placeholder)' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)('identity'),
+    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Llave primaria' }),
     __metadata("design:type", Number)
-], UserTrip.prototype, "exampleField", void 0);
+], UserTrip.prototype, "UserTripId", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Date)
+], UserTrip.prototype, "UserTripDateAcept", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Date)
+], UserTrip.prototype, "UserTripDateEnd", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], UserTrip.prototype, "VehicleId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Number)
+], UserTrip.prototype, "UserTripEarnings", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserTrip.prototype, "UserTripWaitingTime", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Boolean)
+], UserTrip.prototype, "UserTripStatus", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], UserTrip.prototype, "TripId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => trip_entity_1.Trips, (trips) => trips.UserTrip),
+    (0, typeorm_1.JoinColumn)({
+        name: "TripId",
+        foreignKeyConstraintName: "USERTRIP_TRIP_FK",
+        referencedColumnName: "TripId"
+    }),
+    (0, graphql_1.Field)(() => trip_entity_1.Trips),
+    __metadata("design:type", trip_entity_1.Trips)
+], UserTrip.prototype, "Trip", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => vehicle_entity_1.Vehicle, (vehicle) => vehicle.UserTrip),
+    (0, typeorm_1.JoinColumn)({
+        name: "VehicleId",
+        foreignKeyConstraintName: "USERTRIP_VEHICLE_FK",
+        referencedColumnName: "VehicleId"
+    }),
+    (0, graphql_1.Field)(() => vehicle_entity_1.Vehicle),
+    __metadata("design:type", vehicle_entity_1.Vehicle)
+], UserTrip.prototype, "Vehicle", void 0);
 exports.UserTrip = UserTrip = __decorate([
+    (0, typeorm_1.Entity)('UserTrip'),
     (0, graphql_1.ObjectType)()
 ], UserTrip);
 //# sourceMappingURL=user-trip.entity.js.map

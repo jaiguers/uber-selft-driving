@@ -17,7 +17,6 @@ let CreatePersonInput = class CreatePersonInput {
 exports.CreatePersonInput = CreatePersonInput;
 __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: "PersonName es requerido" }),
-    (0, class_validator_1.IsAlpha)('es-ES', { message: "PersonName debe contener solo letras" }),
     (0, graphql_1.Field)({ description: 'Nombre de la persona' }),
     __metadata("design:type", String)
 ], CreatePersonInput.prototype, "PersonName", void 0);
@@ -37,8 +36,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreatePersonInput.prototype, "PersonStatus", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, graphql_1.Field)({ nullable: true }),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], CreatePersonInput.prototype, "UserId", void 0);
 exports.CreatePersonInput = CreatePersonInput = __decorate([

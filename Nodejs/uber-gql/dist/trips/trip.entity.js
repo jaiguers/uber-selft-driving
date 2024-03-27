@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Trips = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const user_booking_trip_entity_1 = require("../user-booking-trip/entities/user-booking-trip.entity");
+const user_trip_entity_1 = require("../user-trip/entities/user-trip.entity");
 const typeorm_1 = require("typeorm");
 let Trips = class Trips {
 };
@@ -50,6 +52,16 @@ __decorate([
     (0, graphql_1.Field)((type) => graphql_1.Int),
     __metadata("design:type", Number)
 ], Trips.prototype, "TripValue", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_trip_entity_1.UserTrip, (userTrip) => userTrip.Trip),
+    (0, graphql_1.Field)(() => user_trip_entity_1.UserTrip),
+    __metadata("design:type", user_trip_entity_1.UserTrip)
+], Trips.prototype, "UserTrip", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_booking_trip_entity_1.UserBookingTrip, (userBookingTrip) => userBookingTrip.Trip),
+    (0, graphql_1.Field)(() => user_booking_trip_entity_1.UserBookingTrip),
+    __metadata("design:type", Array)
+], Trips.prototype, "UserBookingTrip", void 0);
 exports.Trips = Trips = __decorate([
     (0, typeorm_1.Entity)('Trips'),
     (0, graphql_1.ObjectType)()

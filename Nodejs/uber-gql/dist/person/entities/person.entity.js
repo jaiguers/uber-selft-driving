@@ -27,12 +27,12 @@ __decorate([
     __metadata("design:type", String)
 ], Person.prototype, "PersonName", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], Person.prototype, "PersonPhone", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true }),
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], Person.prototype, "PersonAddress", void 0);
@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:type", users_entity_1.Users)
 ], Person.prototype, "User", void 0);
 exports.Person = Person = __decorate([
-    (0, typeorm_1.Entity)('Persons'),
+    (0, typeorm_1.Entity)('Person'),
     (0, graphql_1.ObjectType)()
 ], Person);
 //# sourceMappingURL=person.entity.js.map

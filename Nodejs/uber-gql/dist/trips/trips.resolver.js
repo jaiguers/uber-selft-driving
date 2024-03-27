@@ -18,18 +18,35 @@ const trips_service_1 = require("./trips.service");
 const graphql_2 = require("@nestjs/graphql");
 const trip_entity_1 = require("./trip.entity");
 const create_trip_input_1 = require("./dtos/create-trip-input");
+const user_trip_entity_1 = require("../user-trip/entities/user-trip.entity");
+const user_booking_trip_entity_1 = require("../user-booking-trip/entities/user-booking-trip.entity");
 let TripsResolver = class TripsResolver {
     constructor(service) {
         this.service = service;
     }
+    findAllTrips() {
+        return this.service.findAll();
+    }
     findById(id) {
         return this.service.findById(id);
+    }
+    userTrip(trip) {
+        return this.service.findUserTrip(trip.TripId);
+    }
+    userBookingTrip(trip) {
+        return this.service.findUserBookingTrip(trip.TripId);
     }
     createTrip(newTrip) {
         return this.service.createTrip(newTrip);
     }
 };
 exports.TripsResolver = TripsResolver;
+__decorate([
+    (0, graphql_2.Query)((returns) => trip_entity_1.Trips),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], TripsResolver.prototype, "findAllTrips", null);
 __decorate([
     (0, graphql_2.Query)((returns) => trip_entity_1.Trips, { nullable: true }),
     __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
@@ -38,6 +55,20 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TripsResolver.prototype, "findById", null);
 __decorate([
+    (0, graphql_1.ResolveField)((returns) => user_trip_entity_1.UserTrip),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [trip_entity_1.Trips]),
+    __metadata("design:returntype", Promise)
+], TripsResolver.prototype, "userTrip", null);
+__decorate([
+    (0, graphql_1.ResolveField)((returns) => user_booking_trip_entity_1.UserBookingTrip),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [trip_entity_1.Trips]),
+    __metadata("design:returntype", Promise)
+], TripsResolver.prototype, "userBookingTrip", null);
+__decorate([
     (0, graphql_1.Mutation)((returns) => trip_entity_1.Trips),
     __param(0, (0, graphql_1.Args)('newTrip')),
     __metadata("design:type", Function),
@@ -45,7 +76,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TripsResolver.prototype, "createTrip", null);
 exports.TripsResolver = TripsResolver = __decorate([
-    (0, graphql_1.Resolver)(),
+    (0, graphql_1.Resolver)(() => trip_entity_1.Trips),
     __metadata("design:paramtypes", [trips_service_1.TripsService])
 ], TripsResolver);
 //# sourceMappingURL=trips.resolver.js.map

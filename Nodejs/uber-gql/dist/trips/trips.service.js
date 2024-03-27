@@ -17,9 +17,14 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const trip_entity_1 = require("./trip.entity");
+const user_trip_service_1 = require("../user-trip/user-trip.service");
+const user_booking_trip_service_1 = require("../user-booking-trip/user-booking-trip.service");
+const Status_1 = require("../utils/Status");
 let TripsService = class TripsService {
-    constructor(tripRepository) {
+    constructor(tripRepository, userTripService, usBookingTripService) {
         this.tripRepository = tripRepository;
+        this.userTripService = userTripService;
+        this.usBookingTripService = usBookingTripService;
     }
     findAll() {
         return this.tripRepository.find();
@@ -27,15 +32,31 @@ let TripsService = class TripsService {
     async findById(id) {
         return this.tripRepository.findOne({ where: { TripId: id } });
     }
-    async createTrip(trip) {
-        const newTrip = this.tripRepository.create(trip);
-        return this.tripRepository.save(newTrip);
+    findUserTrip(tripId) {
+        return this.userTripService.findOne(tripId);
+    }
+    findUserBookingTrip(tripId) {
+        return this.usBookingTripService.findByTrip(tripId);
+    }
+    async createTrip(tripInput) {
+        tripInput.TripStatus = Status_1.Status.Waiting;
+        tripInput.TripDate = new Date();
+        const newTrip = this.tripRepository.create(tripInput);
+        const trips = await this.tripRepository.save(newTrip);
+        tripInput.UserBookingTripInput.TripId = trips.TripId;
+        this.usBookingTripService.create(tripInput.UserBookingTripInput);
+        return trips;
+    }
+    update(id, updateTripInput) {
+        return this.tripRepository.update(id, { TripStatus: updateTripInput.TripStatus });
     }
 };
 exports.TripsService = TripsService;
 exports.TripsService = TripsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(trip_entity_1.Trips)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        user_trip_service_1.UserTripService,
+        user_booking_trip_service_1.UserBookingTripService])
 ], TripsService);
 //# sourceMappingURL=trips.service.js.map

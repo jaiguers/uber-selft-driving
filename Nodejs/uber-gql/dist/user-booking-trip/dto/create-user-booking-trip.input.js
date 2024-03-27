@@ -15,9 +15,21 @@ let CreateUserBookingTripInput = class CreateUserBookingTripInput {
 };
 exports.CreateUserBookingTripInput = CreateUserBookingTripInput;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Example field (placeholder)' }),
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Date)
+], CreateUserBookingTripInput.prototype, "UserBookingTripDateInit", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", Date)
+], CreateUserBookingTripInput.prototype, "UserBookingTripDateEnd", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int, { nullable: true }),
     __metadata("design:type", Number)
-], CreateUserBookingTripInput.prototype, "exampleField", void 0);
+], CreateUserBookingTripInput.prototype, "TripId", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], CreateUserBookingTripInput.prototype, "UserTenentId", void 0);
 exports.CreateUserBookingTripInput = CreateUserBookingTripInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateUserBookingTripInput);

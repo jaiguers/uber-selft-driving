@@ -2,21 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Trips {
-  TripId: Int!
-  TripDescription: String!
-  TripDate: DateTime!
-  TripStatus: String!
-  TripOrigin: String!
-  TripDestination: String!
-  TripValue: Int!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Person {
   """LLave primaria"""
   PersonId: Int!
@@ -31,6 +16,25 @@ type Person {
   user: Users!
 }
 
+type UserTrip {
+  """Llave primaria"""
+  UserTripId: Int!
+  UserTripDateAcept: DateTime!
+  UserTripDateEnd: DateTime
+  VehicleId: Int!
+  UserTripEarnings: Float
+  UserTripWaitingTime: String
+  UserTripStatus: Boolean!
+  TripId: Int!
+  Trip: Trips!
+  Vehicle: Vehicle!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Vehicle {
   """Llave primaria de vehiculos"""
   VehicleId: Int!
@@ -41,6 +45,7 @@ type Vehicle {
   VehicleLicenseNumber: String!
   UserId: String!
   User: Users
+  UserTrip: UserTrip
   user: Users!
 }
 
@@ -52,20 +57,40 @@ type Users {
   UserType: String!
   Person: Person
   Vehicle: Vehicle
-}
-
-type UserTrip {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  UserBookingTrip: UserBookingTrip
 }
 
 type UserBookingTrip {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  UserBookingTripId: Int!
+  UserBookingTripDateInit: DateTime!
+  UserBookingTripDateEnd: DateTime
+  TripId: Int!
+
+  """Relación con Users tipo Person"""
+  UserTenentId: String!
+  Trip: Trips!
+  User: Users!
+}
+
+type Trips {
+  TripId: Int!
+  TripDescription: String!
+  TripDate: DateTime!
+  TripStatus: String!
+  TripOrigin: String!
+  TripDestination: String!
+  TripValue: Int!
+  UserTrip: UserTrip!
+  UserBookingTrip: UserBookingTrip!
+  userTrip: UserTrip!
+  userBookingTrip: UserBookingTrip!
 }
 
 type Query {
+  findAllTrips: Trips!
   findById(id: Int!): Trips
+  userTrip(id: Int!): UserTrip!
+  userBookingTrip(id: Int!): UserBookingTrip!
   findAll: [Users!]
   findByUserId(id: String!): Users
   findByUserName(username: String!): Users
@@ -73,12 +98,16 @@ type Query {
   person(id: Int!): Person!
   vehicles: [Vehicle!]!
   vehicle(id: Int!): Vehicle!
-  userTrip(id: Int!): UserTrip!
-  userBookingTrip(id: Int!): UserBookingTrip!
 }
 
 type Mutation {
   createTrip(newTrip: CreateTripInput!): Trips!
+  createUserTrip(createUserTripInput: CreateUserTripInput!): UserTrip!
+  updateUserTrip(updateUserTripInput: UpdateUserTripInput!): UserTrip!
+  removeUserTrip(id: Int!): UserTrip!
+  createUserBookingTrip(createUserBookingTripInput: CreateUserBookingTripInput!): UserBookingTrip!
+  updateUserBookingTrip(updateUserBookingTripInput: UpdateUserBookingTripInput!): UserBookingTrip!
+  removeUserBookingTrip(id: Int!): UserBookingTrip!
   createUser(newUser: UserInput!): Users!
   createPerson(createPersonInput: CreatePersonInput!): Person!
   updatePerson(updatePersonInput: UpdatePersonInput!): Person!
@@ -86,21 +115,52 @@ type Mutation {
   createVehicle(createVehicleInput: CreateVehicleInput!): Vehicle!
   updateVehicle(updateVehicleInput: UpdateVehicleInput!): Vehicle!
   removeVehicle(id: Int!): Vehicle!
-  createUserTrip(createUserTripInput: CreateUserTripInput!): UserTrip!
-  updateUserTrip(updateUserTripInput: UpdateUserTripInput!): UserTrip!
-  removeUserTrip(id: Int!): UserTrip!
-  createUserBookingTrip(createUserBookingTripInput: CreateUserBookingTripInput!): UserBookingTrip!
-  updateUserBookingTrip(updateUserBookingTripInput: UpdateUserBookingTripInput!): UserBookingTrip!
-  removeUserBookingTrip(id: Int!): UserBookingTrip!
 }
 
 input CreateTripInput {
   TripDescription: String!
-  TripDate: DateTime!
-  TripStatus: String!
+  TripDate: DateTime
+  TripStatus: String
   TripOrigin: String!
   TripDestination: String!
   TripValue: Int!
+  UserBookingTripInput: CreateUserBookingTripInput!
+}
+
+input CreateUserBookingTripInput {
+  UserBookingTripDateInit: DateTime
+  UserBookingTripDateEnd: DateTime
+  TripId: Int
+  UserTenentId: String!
+}
+
+input CreateUserTripInput {
+  UserTripDateAcept: DateTime!
+  UserTripDateEnd: DateTime
+  VehicleId: Int!
+  UserTripEarnings: Float!
+  UserTripWaitingTime: String
+  UserTripStatus: Boolean!
+  TripId: Int!
+}
+
+input UpdateUserTripInput {
+  UserTripDateAcept: DateTime
+  UserTripDateEnd: DateTime
+  VehicleId: Int
+  UserTripEarnings: Float
+  UserTripWaitingTime: String
+  UserTripStatus: Boolean
+  TripId: Int
+  id: Int!
+}
+
+input UpdateUserBookingTripInput {
+  UserBookingTripDateInit: DateTime
+  UserBookingTripDateEnd: DateTime
+  TripId: Int
+  UserTenentId: String
+  id: Int!
 }
 
 input UserInput {
@@ -116,7 +176,7 @@ input CreatePersonInput {
   PersonPhone: String
   PersonAddress: String
   PersonStatus: String
-  UserId: String
+  UserId: String!
 }
 
 input UpdatePersonInput {
@@ -145,27 +205,5 @@ input UpdateVehicleInput {
   VehicleDoors: Int
   VehicleLicenseNumber: String
   UserId: String
-  id: Int!
-}
-
-input CreateUserTripInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateUserTripInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateUserBookingTripInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateUserBookingTripInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
 }

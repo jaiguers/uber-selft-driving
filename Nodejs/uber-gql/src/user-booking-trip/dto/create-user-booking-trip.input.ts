@@ -8,7 +8,7 @@ export class CreateUserBookingTripInput {
   @Field({ nullable: true })
   UserBookingTripDateEnd: Date
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   TripId: number
 
   @Field()

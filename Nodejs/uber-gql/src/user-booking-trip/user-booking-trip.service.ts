@@ -11,7 +11,10 @@ export class UserBookingTripService {
   constructor(@InjectRepository(UserBookingTrip) private userBookingRepo: Repository<UserBookingTrip>) { }
 
   create(createUserBookingTripInput: CreateUserBookingTripInput) {
+    createUserBookingTripInput.UserBookingTripDateInit = new Date();
     const newBooking = this.userBookingRepo.create(createUserBookingTripInput);
+    console.log('=============================')
+    console.log(newBooking)
     return this.userBookingRepo.save(newBooking);
   }
 
@@ -21,6 +24,10 @@ export class UserBookingTripService {
 
   findOne(id: number) {
     return this.userBookingRepo.findOne({ where: { UserBookingTripId: id } });
+  }
+
+  findByTrip(TripId: number) {
+    return this.userBookingRepo.findOne({ where: { TripId } });
   }
 
   update(id: number, updateUserBookingTripInput: UpdateUserBookingTripInput) {

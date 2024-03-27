@@ -12,12 +12,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const trips_service_1 = require("./trips.service");
 const trips_resolver_1 = require("./trips.resolver");
 const trip_entity_1 = require("./trip.entity");
+const user_trip_module_1 = require("../user-trip/user-trip.module");
+const user_booking_trip_module_1 = require("../user-booking-trip/user-booking-trip.module");
 let TripsModule = class TripsModule {
 };
 exports.TripsModule = TripsModule;
 exports.TripsModule = TripsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([trip_entity_1.Trips])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([trip_entity_1.Trips]), user_trip_module_1.UserTripModule, user_booking_trip_module_1.UserBookingTripModule],
         providers: [trips_service_1.TripsService, trips_resolver_1.TripsResolver]
     })
 ], TripsModule);

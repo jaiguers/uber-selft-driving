@@ -36,6 +36,7 @@ exports.AppModule = AppModule = __decorate([
                 password: 'io0Wgq8ovAxPDSPNlrDqgmb12FlTrBkh',
                 database: 'minqfqlc',
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                synchronize: true,
                 autoLoadEntities: true,
             }),
             auth_module_1.AuthModule,

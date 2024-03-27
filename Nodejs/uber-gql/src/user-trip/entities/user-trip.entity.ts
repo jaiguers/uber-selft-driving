@@ -1,9 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Trips } from 'src/trips/trip.entity';
 import { Vehicle } from 'src/vehicles/entities/vehicle.entity';
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('UserTrip')
 @ObjectType()
 export class UserTrip {
 
@@ -15,20 +15,20 @@ export class UserTrip {
   @Field()
   UserTripDateAcept: Date
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   UserTripDateEnd: Date
 
   @Column()
   @Field(() => Int)
   VehicleId: number
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   UserTripEarnings: number
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   UserTripWaitingTime: string
 
   @Column()
@@ -40,10 +40,20 @@ export class UserTrip {
   TripId: number
 
   @ManyToOne(() => Trips, (trips) => trips.UserTrip)
-  @Field(() => Trips, { nullable: true })
-  Trips: Trips
+  @JoinColumn({
+    name: "TripId",
+    foreignKeyConstraintName: "USERTRIP_TRIP_FK",
+    referencedColumnName: "TripId"
+  })
+  @Field(() => Trips)
+  Trip: Trips
 
   @ManyToOne(() => Vehicle, (vehicle) => vehicle.UserTrip)
+  @JoinColumn({
+    name: "VehicleId",
+    foreignKeyConstraintName: "USERTRIP_VEHICLE_FK",
+    referencedColumnName: "VehicleId"
+  })
   @Field(() => Vehicle)
   Vehicle: Vehicle
 }

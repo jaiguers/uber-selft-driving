@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateTripInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const create_user_booking_trip_input_1 = require("../../user-booking-trip/dto/create-user-booking-trip.input");
 let CreateTripInput = class CreateTripInput {
 };
 exports.CreateTripInput = CreateTripInput;
@@ -19,11 +20,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreateTripInput.prototype, "TripDescription", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", Date)
 ], CreateTripInput.prototype, "TripDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], CreateTripInput.prototype, "TripStatus", void 0);
 __decorate([
@@ -38,6 +39,10 @@ __decorate([
     (0, graphql_1.Field)((type) => graphql_1.Int),
     __metadata("design:type", Number)
 ], CreateTripInput.prototype, "TripValue", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => create_user_booking_trip_input_1.CreateUserBookingTripInput),
+    __metadata("design:type", create_user_booking_trip_input_1.CreateUserBookingTripInput)
+], CreateTripInput.prototype, "UserBookingTripInput", void 0);
 exports.CreateTripInput = CreateTripInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateTripInput);

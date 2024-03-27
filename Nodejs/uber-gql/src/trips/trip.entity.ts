@@ -34,11 +34,11 @@ export class Trips {
     @Field((type) => Int)
     TripValue: number
 
-    @OneToMany(() => UserTrip, (userTrip) => userTrip.Trips)
+    @OneToMany(() => UserTrip, (userTrip) => userTrip.Trip)
     @Field(() => UserTrip)
     UserTrip: UserTrip
 
     @OneToMany(() => UserBookingTrip, (userBookingTrip) => userBookingTrip.Trip)
     @Field(() => UserBookingTrip)
-    UserBookingTrip: UserBookingTrip
+    UserBookingTrip: UserBookingTrip[]
 }

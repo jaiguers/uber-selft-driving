@@ -5,7 +5,6 @@ import { IsAlpha, IsNotEmpty, IsOptional } from 'class-validator';
 export class CreatePersonInput {
 
   @IsNotEmpty({ message: "PersonName es requerido" })
-  @IsAlpha('es-ES', { message: "PersonName debe contener solo letras" })
   @Field({ description: 'Nombre de la persona' })
   PersonName: string
 
@@ -21,8 +20,7 @@ export class CreatePersonInput {
   @Field({ nullable: true })
   PersonStatus: string
 
-  @IsOptional()
-  @Field({ nullable: true })
+  @Field()
   UserId: string
 
 }

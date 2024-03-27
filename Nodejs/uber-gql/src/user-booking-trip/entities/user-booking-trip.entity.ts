@@ -1,36 +1,46 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Trips } from 'src/trips/trip.entity';
 import { Users } from 'src/users/users.entity';
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('UserBookingTrip')
 @ObjectType()
 export class UserBookingTrip {
   @PrimaryGeneratedColumn('identity')
-  @Field()
+  @Field(() => Int)
   UserBookingTripId: number
 
   @Column()
   @Field()
   UserBookingTripDateInit: Date
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   UserBookingTripDateEnd: Date
 
   @Column()
-  @Field()
+  @Field(() => Int)
   TripId: number
 
   @Column()
-  @Field()
+  @Field({ description: 'Relación con Users tipo Person' })
   UserTenentId: string
 
-  @ManyToOne(() => Trips, (trip) => trip)
-  @Field(() => Trips, { nullable: true })
+  @ManyToOne(() => Trips, (trips) => trips.UserBookingTrip)
+  @JoinColumn({
+    name: "TripId",
+    foreignKeyConstraintName: "USERBOKINGTRIP_TRIP_FK",
+    referencedColumnName: "TripId"
+  })
+  @Field(() => Trips)
   Trip: Trips
 
   @ManyToOne(() => Users, (user) => user.UserBookingTrip)
+  @JoinColumn({
+    name: "UserTenentId",
+    foreignKeyConstraintName: "USERBOKINGTRIP_USER_FK",
+    referencedColumnName: "UserId"
+  })
   @Field(() => Users)
   User: Users
 

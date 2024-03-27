@@ -10,12 +10,16 @@ exports.UserBookingTripModule = void 0;
 const common_1 = require("@nestjs/common");
 const user_booking_trip_service_1 = require("./user-booking-trip.service");
 const user_booking_trip_resolver_1 = require("./user-booking-trip.resolver");
+const typeorm_1 = require("@nestjs/typeorm");
+const user_booking_trip_entity_1 = require("./entities/user-booking-trip.entity");
 let UserBookingTripModule = class UserBookingTripModule {
 };
 exports.UserBookingTripModule = UserBookingTripModule;
 exports.UserBookingTripModule = UserBookingTripModule = __decorate([
     (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_booking_trip_entity_1.UserBookingTrip])],
         providers: [user_booking_trip_resolver_1.UserBookingTripResolver, user_booking_trip_service_1.UserBookingTripService],
+        exports: [user_booking_trip_service_1.UserBookingTripService]
     })
 ], UserBookingTripModule);
 //# sourceMappingURL=user-booking-trip.module.js.map

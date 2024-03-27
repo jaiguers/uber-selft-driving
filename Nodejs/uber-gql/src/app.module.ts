@@ -26,7 +26,7 @@ import { UserBookingTripModule } from './user-booking-trip/user-booking-trip.mod
       password: 'io0Wgq8ovAxPDSPNlrDqgmb12FlTrBkh',
       database: 'minqfqlc',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      //synchronize: true,
+      synchronize: true,
       autoLoadEntities: true,
     }),
     AuthModule,

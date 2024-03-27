@@ -2,7 +2,7 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Users } from 'src/users/users.entity';
 import { Column, Entity, In, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Persons')
+@Entity('Person')
 @ObjectType()
 export class Person {
 
@@ -14,13 +14,13 @@ export class Person {
   @Field()
   PersonName: string
 
-  @Column()
+  @Column({ nullable: true })
   @Field({ nullable: true })
-  PersonPhone: string
+  PersonPhone?: string
 
-  @Column()
+  @Column({ nullable: true })
   @Field({ nullable: true })
-  PersonAddress: string
+  PersonAddress?: string
 
   @Column()
   @Field()
